@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getDoc, doc, collection } from "firebase/firestore";
+import { getDoc, doc} from "firebase/firestore";
 import { db } from "../firebase/config";
 import ItemDetail from "../components/ItemDetail";
+import '../index.scss';
 
 export default function ItemDetailContainer() {
     const { idProducto } = useParams();
@@ -24,7 +25,7 @@ export default function ItemDetailContainer() {
     return (
         <div className="contenedor_productos">
             {!item 
-                ? <p>Cargando producto...</p>
+                ? <p className="cargando">Cargando producto...</p>
                 : <ItemDetail item={item} />
             }
         </div>

@@ -217,6 +217,9 @@ body {
 }
 
 .contenedor_productos {
+    .cargando {
+        color: $blanco;
+    }
     .item-detail {
         max-width: 930px;
         width: 90%;
