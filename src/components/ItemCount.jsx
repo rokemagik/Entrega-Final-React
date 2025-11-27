@@ -8,9 +8,11 @@ export default function ItemCount({ stock = 10, initial = 1, onAdd }) {
 
   return (
     <div className="item-count">
-      <button onClick={dec}>-</button>
-      <span>{qty}</span>
-      <button onClick={inc}>+</button>
+      <div className="count">
+        <button className="boton-mas" onClick={dec}>-</button>
+        <span className="cantidad">{qty}</span>
+        <button className="boton-menos" onClick={inc}>+</button>
+      </div>
       <button onClick={() => onAdd(qty)} disabled={stock <= 0}>Agregar al carrito</button>
       {stock <= 0 && <p>Sin stock</p>}
     </div>

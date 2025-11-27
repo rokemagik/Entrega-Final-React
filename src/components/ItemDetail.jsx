@@ -4,11 +4,13 @@ import ItemCount from "./ItemCount";
 import { CartContext } from "../context/CartContext";
 
 function ItemDetail({ item }) {
-    const { addItem } = useContext(CartContext);
+    const { addToCart } = useContext(CartContext);
     const [added, setAdded] = useState(false);
 
+    if (!item) return <p>Cargando producto...</p>;
+
     const handleAdd = (cantidad) => {
-        addItem(item, cantidad);
+        addToCart(item, cantidad);
         setAdded(true);
     };
 
@@ -26,15 +28,12 @@ function ItemDetail({ item }) {
                     <p>{item.descripcion}</p>
                     <h3>${item.precio}</h3>
 
-                    {/* Sin stock */}
                     {item.stock === 0 && <p>Sin stock</p>}
 
-                    {/* Mostrar ItemCount sólo si NO agregó algo */}
                     {!added && item.stock > 0 && (
                         <ItemCount stock={item.stock} onAdd={handleAdd} />
                     )}
 
-                    {/* Mostrar botón ir al carrito si YA agregó */}
                     {added && (
                         <Link to="/cart">
                             <button>Ir al carrito</button>

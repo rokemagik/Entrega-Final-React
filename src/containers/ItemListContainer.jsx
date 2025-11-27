@@ -1,49 +1,47 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ItemList from "../components/ItemList";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase/config";
+import ItemList from "../components/ItemList";
 
-export default function ItemListContainer({ greeting }) {
+function ItemListContainer({ greeting }) {
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
-    const { categoriaId } = useParams(); // <-- si estás en /categoria/intel
+    const { idCategoria } = useParams();
 
     useEffect(() => {
         setLoading(true);
 
-        // referencia a la colección
-        const productosRef = collection(db, "productos");
+        const productosRef = collection(db, "products");
 
         let consulta;
 
-        if (categoriaId) {
-            // filtrar por categoría
-            consulta = query(productosRef, where("categoria", "==", categoriaId));
+        if (idCategoria) {
+            consulta = query(productosRef, where("categoria", "==", idCategoria));
         } else {
             consulta = productosRef;
         }
 
         getDocs(consulta)
             .then((resp) => {
-                setProductos(
-                    resp.docs.map((doc) => ({
-                        id: doc.id,
-                        ...doc.data()
-                    }))
-                );
+                const items = resp.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                setProductos(items);
             })
             .finally(() => setLoading(false));
-    }, [categoriaId]);
+
+    }, [idCategoria]);
 
     if (loading) return <p>Cargando productos...</p>;
 
-    if (productos.length === 0) return <p>No hay productos en esta categoría.</p>;
-
     return (
-        <div className="contenedor_main">
-            <h2>{greeting}</h2>
+    <div className="contenedor_main">
+        <h2>{greeting}</h2>
+
+        <div className="contenedor_productos">
             <ItemList productos={productos} />
         </div>
-    );
+    </div>
+)
 }
+
+export default ItemListContainer;

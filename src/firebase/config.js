@@ -14,9 +14,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app);
 
-// helpers
 export async function getProducts() {
   const col = collection(db, "products");
   const snapshot = await getDocs(col);

@@ -6,7 +6,7 @@ import Cart from "./components/Cart";
 import CheckoutForm from "./components/CheckoutForm";
 import NotFound from "./pages/NotFound";
 
-function App(){
+function App() {
   return (
     <BrowserRouter>
       <NavBar />
@@ -20,5 +20,7 @@ function App(){
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
+
+export default App; 
