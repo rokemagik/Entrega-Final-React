@@ -217,9 +217,6 @@ body {
 }
 
 .contenedor_productos {
-    .cargando {
-        color: $blanco;
-    }
     .item-detail {
         max-width: 930px;
         width: 90%;
@@ -343,4 +340,11 @@ body {
             color: $blanco;
         }
     }
+}
+
+.cargando {
+    color: $blanco;
+    font-size: 2rem;
+    text-align: center;
+    padding: 1rem;
 }

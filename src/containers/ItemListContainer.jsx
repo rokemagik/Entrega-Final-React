@@ -31,7 +31,7 @@ function ItemListContainer({ greeting }) {
 
     }, [idCategoria]);
 
-    if (loading) return <p>Cargando productos...</p>;
+    if (loading) return <p className="cargando">Cargando productos...</p>;
 
     return (
     <div className="contenedor_main">
