@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import ItemListContainer from "./containers/ItemListContainer";
 import ItemDetailContainer from "./containers/ItemDetailContainer";
@@ -8,7 +8,7 @@ import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <NavBar />
       <Routes>
         <Route path="/" element={<ItemListContainer greeting="Bienvenido" />} />
@@ -19,7 +19,7 @@ function App() {
         <Route path="/checkout/success/:orderId" element={<div>Compra confirmada</div>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
